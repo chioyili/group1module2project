@@ -4,7 +4,9 @@ import {useState} from 'react';
 import styles from "./MovieList.module.css";
 import HeartButton from "./HeartButtton";
 
-function MovieList({movieData}) {
+function MovieList({movieData,
+  // genre
+}) {
 
   const [like, setLike] = useState([]);
 
@@ -23,14 +25,14 @@ function MovieList({movieData}) {
 
     <div className={styles.movielist} >
       {movieData && movieData.length > 0 && 
-        movieData.map((movie,index) => (
+        movieData.map((movie) => (
          <div key ={movie.imdbID}>
           <p className={styles.title}>{movie.Title} 
           <HeartButton 
-          // checking like status of the specified movie at the given index
-          // label={like[index] ? "❤️" :"♡"} 
+          // checking like status of the specified movie at the given movie id (imbdID)
+          // label={like[movie.imdbID] ? "❤️" :"♡"} 
           like = {like[movie.imdbID]}
-          // when button clicked, it calles the handleHeartButton with index parameter
+          // when button clicked, it calles the handleHeartButton with movie.imdbID parameter (id given by the api)
           onClick = {() => handleHeartButton(movie.imdbID)}>
           </HeartButton>
           </p>
