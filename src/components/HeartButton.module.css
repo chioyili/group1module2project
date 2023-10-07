@@ -1,0 +1,17 @@
+.button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    margin:5px;
+    margin-bottom:0px;
+    align-items:centre;
+    display: inline-flex;
+}
+
+.heartImg{
+    width:30px;
+    height:20px;
+    object-fit:cover;
+}
