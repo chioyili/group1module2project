@@ -2,8 +2,7 @@
     This component generates a random movie from the list of movies
 
     To do:
-    - implement like button
-    - implement genre selection (i.e. takes in a 'genre' prop and selects the relevant list of movies)
+    - implement like button (check with the team about how we store mylist information)
     - implement styling/css
 */
 
@@ -13,20 +12,43 @@ import styles from "./MovieList.module.css";
 
 import HeartButton from "./HeartButtton";
 
-function MovieRandom({ movieList }) {
+function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieList }) {
+  
   const [like, setLike] = useState([]);
 
+  // Determine the appropriate movie list based on the 'genre' prop
+  let selectedMovieList = [];
+  switch (genre) {
+    case 'Mystery':
+      selectedMovieList = mysteryMovieList;
+      console.log(genre, " movie selected");
+      break;
+    case 'Comedy':
+      selectedMovieList = comedyMovieList;
+      console.log(genre, " movie selected");
+      break;
+    case 'Romance':
+      selectedMovieList = romanceMovieList;
+      console.log(genre, " movie selected");
+      break;
+    default:
+      selectedMovieList = [];
+      console.log("no movie selected");
+  }
+
   // Generate a random number to select a random movie
-  const randomIndex = Math.floor(Math.random() * movieList.length);
+  const randomIndex = Math.floor(Math.random() * selectedMovieList.length);
 
   // Get the randomly selected movie
-  const randomMovie = movieList[randomIndex];
+  const randomMovie = selectedMovieList[randomIndex];
 
-  const handleHeartButton = (imdbID) => {};
+  const handleHeartButton = (imdbID) => {
+    /* some code to add it to mylist? */
+  };
 
   return (
     <div>
-      <h2>Random Movie</h2>
+      <h2>Random {genre} Movie</h2>
 
       {randomMovie ? (
         <div key={randomMovie.imdbID}>
@@ -45,7 +67,7 @@ function MovieRandom({ movieList }) {
           <p className={styles.year}>Released on {randomMovie.Year} </p>
         </div>
       ) : (
-        <p>No movies available.</p>
+        <p>No {genre} movies available.</p>
       )}
     </div>
   );
