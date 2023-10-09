@@ -1,11 +1,13 @@
 import styles from "./ViewList.module.css";
+import { useContext } from "react";
 import FavListContext from "../context/FavListContext";
 
-export default function Viewlist() {
-  const { list, handlerDeleteItem } = useContext(FavListContext);
+export default function ViewList() {
+  const { favList, handlerDeleteItem } = useContext(FavListContext);
 
   return (
     <div>
+      <h1>My Favourites</h1>
       <table className={`${styles.table}`}>
         <thead>
           <tr>
@@ -13,12 +15,12 @@ export default function Viewlist() {
             <th>Year</th>
             <th>Rated</th>
             <th>Genre</th>
-            <th style="width:60%">Synopsis</th>
+            <th style={{ width: "60%" }}>Synopsis</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {list.map((item) => (
+          {favList.map((item) => (
             <tr key={item.IMBDid}>
               <td>{item.Title}</td>
               <td>{item.Year}</td>

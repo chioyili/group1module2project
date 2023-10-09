@@ -3,13 +3,13 @@ import { useState, useContext } from "react";
 
 import styles from "./MovieList.module.css";
 import HeartButton from "./HeartButtton";
-// import FavListContext from "../context/FavListContext";
+import FavListContext from "../context/FavListContext";
 
 function MovieList({
   movieData,
   // genre
 }) {
-  // const { handlerAddItem, like } = useContext(FavListContext);
+  // const { handlerAddItem } = useContext(FavListContext);
 
   const [like, setLike] = useState([]);
 

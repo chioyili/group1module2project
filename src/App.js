@@ -2,8 +2,10 @@ import "./App.css";
 import movieAPI from "./api/moveapi";
 import MovieSelect from "./components/MovieSelect";
 import MovieList from "./components/MovieList";
-import MyList from "./components/MyList";
 import Header from "./components/Header";
+import ViewList from "./components/ViewList";
+
+import { FavListProvider } from "./context/FavListContext";
 
 import { useState, useEffect, BrowserRouter } from "react";
 import { useLoaderData } from "react-router-dom";
@@ -99,12 +101,13 @@ function App() {
       ) : (
         movieData.length === 0 && <p>No data loaded.</p>
       )}
-
-      <MovieSelect selectMovieHandler={selectMovieHandler} />
-      {/* {showWhichList == 'Movie' && <MovieList movieData={movieData} />}
+      <FavListProvider>
+        <MovieSelect selectMovieHandler={selectMovieHandler} />
+        {/* {showWhichList == 'Movie' && <MovieList movieData={movieData} />}
       {showWhichList == 'My List' && <MyList />} */}
-      <MovieList movieData={movieData} />
-      <MyList />
+        <MovieList movieData={movieData} />
+        <ViewList />
+      </FavListProvider>
     </div>
   );
 }

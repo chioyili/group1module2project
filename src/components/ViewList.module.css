@@ -14,7 +14,7 @@
   .table th,
   .table td {
     padding: 12px 15px;
-    text-align: right;
+    text-align: center;
   }
   .table th:nth-child(1),
   .table td:nth-child(1) {
@@ -29,19 +29,7 @@
   .table tbody tr:last-of-type {
     border-bottom: 2px solid #5287e3;
   }
-  .containerSum {
-    text-align: right;
-    margin-bottom: 2rem;
-    margin-right: 10px;
-  }
-  .sum {
-    font-weight: bold;
-    font-size: 1.25rem;
-  }
-  /* .dark tbody tr:nth-of-type(even) {
-    background-color: #b4b3b3;
-    color: black;
-  } */
+ 
   .table td {
     cursor: pointer;
   }

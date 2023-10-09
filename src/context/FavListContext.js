@@ -28,13 +28,12 @@ export function FavListProvider({ children }) {
   const handlerAddItem = (newItem) => {
     setFavList((curList) => {
       const newList = [...curList, newItem];
-      setFavList(newList);
-      handleHeartButton(newItem.imdbID);
+      return newList;
     });
   };
 
   const context = {
-    list: favList,
+    favList: favList,
     handlerDeleteItem: handlerDeleteItem,
     handlerAddItem: handlerAddItem,
     handleHeartButton: handleHeartButton,
