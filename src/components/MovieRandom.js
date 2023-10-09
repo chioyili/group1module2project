@@ -33,10 +33,7 @@ function MovieRandom({ movieList }) {
           <p className={styles.title}>
             {randomMovie.Title}
             <HeartButton
-              // checking like status of the specified movie at the given movie id (imbdID)
-              // label={like[movie.imdbID] ? "❤️" :"♡"}
               like={like[randomMovie.imdbID]}
-              // when button clicked, it calles the handleHeartButton with movie.imdbID parameter (id given by the api)
               onClick={() => handleHeartButton(randomMovie.imdbID)}
             ></HeartButton>
           </p>
