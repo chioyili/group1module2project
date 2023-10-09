@@ -29,9 +29,9 @@ export function FavListProvider({ children }) {
     });
   };
 
-  const handlerAddItem = (newItem) => {
+  const handlerAddItem = (movie) => {
     setFavList((curList) => {
-      const newList = [...curList, newItem];
+      const newList = [...curList, movie];
       return newList;
     });
   };
@@ -42,7 +42,7 @@ export function FavListProvider({ children }) {
 
     //add or remove movie object from favlist
     if (updatedLikeStatus[movie.imdbID]) {
-      handlerDeleteItem(movie.imdbID);
+      handlerDeleteItem(movie);
     } else {
       handlerAddItem(movie);
     }
