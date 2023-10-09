@@ -7,6 +7,7 @@ export function FavListProvider({ children }) {
 
   const [like, setLike] = useState([]);
 
+  //only update the heart button
   const toggleHeartButton = (imdbID) => {
     // create an array to store like status for all the movies
     const updatedLikeStatus = { ...like };
@@ -17,6 +18,7 @@ export function FavListProvider({ children }) {
     console.log(like);
   };
 
+  //only update the favlist
   const handlerDeleteItem = (movie) => {
     setFavList((curList) => {
       // makes a copy of original arr and filter out deleted item
@@ -29,6 +31,7 @@ export function FavListProvider({ children }) {
     });
   };
 
+  //only update the favlist
   const handlerAddItem = (movie) => {
     setFavList((curList) => {
       const newList = [...curList, movie];
@@ -36,6 +39,9 @@ export function FavListProvider({ children }) {
     });
   };
 
+  //check if heart button is true before the click.
+  //if true, user is trying to remove this movie => delete movie from list & update heart
+  //if false, user is trying to add this movie => add movie to list & update heart
   const handleHeartButton = (movie) => {
     // create an array to store like status for all the movies
     const updatedLikeStatus = { ...like };
@@ -51,6 +57,7 @@ export function FavListProvider({ children }) {
     toggleHeartButton(movie.imdbID);
   };
 
+  //this button only applicable for movies already in the favlist, clicking it will remove the movie from the list and update the heart
   const handlerDeleteButton = (movie) => {
     // delete item from list
     handlerDeleteItem(movie);
