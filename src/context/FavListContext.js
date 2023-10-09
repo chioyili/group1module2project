@@ -15,9 +15,17 @@ export function FavListProvider({ children }) {
     });
   };
 
+  const handlerAddItem = (newItem) => {
+    setFavList((curList) => {
+      const newList = [...curList, newItem];
+      setList(newList);
+    });
+  };
+
   const context = {
     list: favList,
     handlerDeleteItem: handlerDeleteItem,
+    handlerAddItem: handlerAddItem,
   };
 
   return (
