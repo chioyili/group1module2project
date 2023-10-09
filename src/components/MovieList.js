@@ -9,29 +9,8 @@ function MovieList({
   movieData,
   // genre
 }) {
-  const { handlerAddItem } = useContext(FavListContext);
-
-  const [like, setLike] = useState([]);
-
-  const handleHeartButton = (movie) => {
-    // create an array to store like status for all the movies
-    const updatedLikeStatus = { ...like };
-    // to toggle the like status for the specific movie
-    updatedLikeStatus[movie.imdbID] = !updatedLikeStatus[movie.imdbID];
-    setLike(updatedLikeStatus);
-
-    //add this movie object to the FavList using handlerAddItem
-    handlerAddItem(movie);
-    console.log(like);
-  };
-
-  //
-  // const handlerAddItem = (newItem) => {
-  //   setFavList((curList) => {
-  //     const newList = [...curList, newItem];
-  //     setList(newList);
-  //   });
-  // };
+  const { like, handleHeartButton, handlerAddItem } =
+    useContext(FavListContext);
 
   return (
     <div>

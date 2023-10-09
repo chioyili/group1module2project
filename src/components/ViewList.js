@@ -3,7 +3,7 @@ import { useContext } from "react";
 import FavListContext from "../context/FavListContext";
 
 export default function ViewList() {
-  const { favList, handlerDeleteItem } = useContext(FavListContext);
+  const { favList, handlerDeleteButton } = useContext(FavListContext);
 
   return (
     <div>
@@ -18,10 +18,10 @@ export default function ViewList() {
         </thead>
         <tbody>
           {favList.map((item) => (
-            <tr key={item.IMBDid}>
+            <tr key={item.imdbID}>
               <td>{item.Title}</td>
               <td>{item.Year}</td>
-              <td onClick={() => handlerDeleteItem(item.IMBDid)}>🗑️</td>
+              <td onClick={() => handlerDeleteButton(item)}>🗑️</td>
             </tr>
           ))}
         </tbody>
