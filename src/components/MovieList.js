@@ -9,7 +9,7 @@ function MovieList({
   movieData,
   // genre
 }) {
-  // const { handlerAddItem } = useContext(FavListContext);
+  const { handlerAddItem } = useContext(FavListContext);
 
   const [like, setLike] = useState([]);
 
@@ -19,6 +19,8 @@ function MovieList({
     // to toggle the like status for the specific movie
     updatedLikeStatus[imdbID] = !updatedLikeStatus[imdbID];
     setLike(updatedLikeStatus);
+    //add this item to the FavList using handlerAddItem,
+    //but this handler accepts a movie object, so we need to figure out how to get the object from the api based on the id in this func!
     console.log(like);
   };
 

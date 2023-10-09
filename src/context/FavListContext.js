@@ -4,16 +4,6 @@ const FavListContext = createContext();
 
 export function FavListProvider({ children }) {
   const [favList, setFavList] = useState([]);
-  const [like, setLike] = useState([]);
-
-  const handleHeartButton = (imdbID) => {
-    // create an array to store like status for all the movies
-    const updatedLikeStatus = { ...like };
-    // to toggle the like status for the specific movie
-    updatedLikeStatus[imdbID] = !updatedLikeStatus[imdbID];
-    setLike(updatedLikeStatus);
-    console.log(like);
-  };
 
   const handlerDeleteItem = (id) => {
     setFavList((curList) => {
@@ -36,7 +26,6 @@ export function FavListProvider({ children }) {
     favList: favList,
     handlerDeleteItem: handlerDeleteItem,
     handlerAddItem: handlerAddItem,
-    handleHeartButton: handleHeartButton,
   };
 
   return (
