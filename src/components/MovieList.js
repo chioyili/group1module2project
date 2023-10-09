@@ -13,14 +13,15 @@ function MovieList({
 
   const [like, setLike] = useState([]);
 
-  const handleHeartButton = (imdbID) => {
+  const handleHeartButton = (movie) => {
     // create an array to store like status for all the movies
     const updatedLikeStatus = { ...like };
     // to toggle the like status for the specific movie
-    updatedLikeStatus[imdbID] = !updatedLikeStatus[imdbID];
+    updatedLikeStatus[movie.imdbID] = !updatedLikeStatus[movie.imdbID];
     setLike(updatedLikeStatus);
-    //add this item to the FavList using handlerAddItem,
-    //but this handler accepts a movie object, so we need to figure out how to get the object from the api based on the id in this func!
+
+    //add this movie object to the FavList using handlerAddItem
+    handlerAddItem(movie);
     console.log(like);
   };
 
@@ -48,7 +49,7 @@ function MovieList({
                   // label={like[movie.imdbID] ? "❤️" :"♡"}
                   like={like[movie.imdbID]}
                   // when button clicked, it calles the handleHeartButton with movie.imdbID parameter (id given by the api)
-                  onClick={() => handleHeartButton(movie.imdbID)}
+                  onClick={() => handleHeartButton(movie)}
                 ></HeartButton>
               </p>
               <img
