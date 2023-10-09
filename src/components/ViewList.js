@@ -19,13 +19,13 @@ export default function Viewlist() {
         </thead>
         <tbody>
           {list.map((item) => (
-            <tr key={item.id}>
-              <td>{item.title}</td>
-              <td>{item.year}</td>
-              <td>{item.rated}</td>
-              <td>{item.genre}</td>
-              <td>{item.plot}</td>
-              <td onClick={() => handlerDeleteItem(item.id)}>🗑️</td>
+            <tr key={item.IMBDid}>
+              <td>{item.Title}</td>
+              <td>{item.Year}</td>
+              <td>{item.Rated}</td>
+              <td>{item.Genre}</td>
+              <td>{item.Plot}</td>
+              <td onClick={() => handlerDeleteItem(item.IMBDid)}>🗑️</td>
             </tr>
           ))}
         </tbody>
