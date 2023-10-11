@@ -2,18 +2,18 @@
     This component generates a random movie from the list of movies
 
     To do:
-    - debug why random movie disappears
     - implement styling/css
     - implement a component to display the random movie
 */
 
 import styles from "./MovieList.module.css";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import HeartButton from "./HeartButtton";
 import FavListContext from "../context/FavListContext";
 
 function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieList }) {
+  
   
   const { like, handleHeartButton } = useContext(FavListContext);
 
@@ -38,7 +38,14 @@ function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieLis
   }
 
   // Generate a random number to select a random movie
-  const randomIndex = Math.floor(Math.random() * selectedMovieList.length);
+  const [randomIndex, setRandomIndex] = useState(null)
+
+  useEffect( () => {
+    setRandomIndex(Math.floor(Math.random() * selectedMovieList.length));
+    console.log("randomIndex: ", randomIndex)
+  }, [])
+  // const randomIndex = Math.floor(Math.random() * selectedMovieList.length);
+  // console.log("randomIndex: ", randomIndex)
 
   // Get the randomly selected movie
   const randomMovie = selectedMovieList[randomIndex];
