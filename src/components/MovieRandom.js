@@ -41,9 +41,11 @@ function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieLis
   const [randomIndex, setRandomIndex] = useState(null)
 
   useEffect( () => {
-    setRandomIndex(Math.floor(Math.random() * selectedMovieList.length));
-    console.log("randomIndex: ", randomIndex)
-  }, [])
+    if (selectedMovieList !== null)  {
+      setRandomIndex(Math.floor(Math.random() * selectedMovieList.length));
+      console.log("randomIndex: ", randomIndex)
+    }
+  }, [selectedMovieList])
   // const randomIndex = Math.floor(Math.random() * selectedMovieList.length);
   // console.log("randomIndex: ", randomIndex)
 
