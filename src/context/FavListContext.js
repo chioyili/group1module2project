@@ -1,8 +1,45 @@
 import { createContext, useState } from "react";
+import movieAPI from "../api/moveapi";
 
 const FavListContext = createContext();
 
 export function FavListProvider({ children }) {
+  /* Below code are for setting the api data */
+  const [movieData, setMovieData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  // New states for disecting of list
+  const [mysteryMovieList, setMysteryMovieList] = useState([]);
+  const [romanceMovieList, setRomanceMovieList] = useState([]);
+  const [comedyMovieList, setComedyMovieList] = useState([]);
+  const [fullMovieList, setFullMovieList] = useState([]);
+
+  /* Below code are for setting genre */
+  const [genreSelect, setGenreSelect] = useState(false);
+
+  const selectMovieHandler = (genre) => {
+    switch (genre) {
+      case "mystery":
+        setMovieData(mysteryMovieList);
+        setGenreSelect(false);
+        break;
+      case "romance":
+        setMovieData(romanceMovieList);
+        setGenreSelect(false);
+        break;
+      case "comedy":
+        setMovieData(comedyMovieList);
+        setGenreSelect(false);
+        break;
+      case "full":
+        setMovieData(fullMovieList);
+        setGenreSelect(false);
+        break;
+      default:
+        console.log("went into default...");
+        break;
+    }};
+
+  /* Below code are associated for liking a movie */
   const [favList, setFavList] = useState([]);
 
   const [like, setLike] = useState([]);
@@ -72,6 +109,18 @@ export function FavListProvider({ children }) {
     handlerAddItem: handlerAddItem,
     like: like,
     handleHeartButton: handleHeartButton,
+    genreSelect: genreSelect, 
+    setGenreSelect: setGenreSelect,
+    // apiGet: apiGet,
+    isLoading: isLoading,
+    setIsLoading: setIsLoading,
+    movieData: movieData,
+    setMovieData: setMovieData,
+    setFullMovieList: setFullMovieList,
+    setMysteryMovieList: setMysteryMovieList,
+    setRomanceMovieList: setRomanceMovieList,
+    setComedyMovieList: setComedyMovieList,
+    selectMovieHandler: selectMovieHandler,
   };
 
   return (
@@ -80,4 +129,5 @@ export function FavListProvider({ children }) {
     </FavListContext.Provider>
   );
 }
+
 export default FavListContext;

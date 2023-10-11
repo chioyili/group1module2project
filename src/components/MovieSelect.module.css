@@ -1,13 +1,8 @@
-.button {
-    padding: 5px 10x;
+.selectbutton {
+    padding: 5px 15px;
     border-radius: 10px;
-    margin: 5px 5px;
-}
-
-.header {
-    font-family:'Courier New', Courier, monospace;
-    width: 1000px;
-    border: 5px solid black;
-    padding: 10px;
-    margin-left: 445px;
-}
+    border: 0px solid lightgray;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    margin: 10px;
+    background-color: lightgray;
+  }

@@ -12,8 +12,9 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   }
   .table thead tr {
-    background-color: #5287e3;
-    color: #ffffff;
+    /* background-color: #5287e3; */
+    background-color: lightgray;
+    color: black;
     text-align: right;
   }
   .table th,
@@ -32,7 +33,7 @@
     background-color: #f3f3f3;
   }
   .table tbody tr:last-of-type {
-    border-bottom: 2px solid #5287e3;
+    border-bottom: 2px solid gray;
   }
  
   .table td {

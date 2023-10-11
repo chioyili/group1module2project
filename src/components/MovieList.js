@@ -5,8 +5,8 @@ import styles from "./MovieList.module.css";
 import HeartButton from "./HeartButtton";
 import FavListContext from "../context/FavListContext";
 
-function MovieList({movieData}) {
-  const { like, handleHeartButton } = useContext(FavListContext);
+function MovieList() {
+  const { movieData, like, handleHeartButton } = useContext(FavListContext);
 
   return (
     <div>
@@ -14,7 +14,7 @@ function MovieList({movieData}) {
         {movieData &&
           movieData.length > 0 &&
           movieData.map((movie) => (
-            <div key={movie.imdbID}>
+            <div key={movie.imdbID} className="movieblock">
               <p className={styles.title}>
                 {movie.Title}
                 <HeartButton
