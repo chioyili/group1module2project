@@ -2,19 +2,20 @@
     This component generates a random movie from the list of movies
 
     To do:
-    - implement like button (check with the team about how we store mylist information)
+    - debug why random movie disappears
     - implement styling/css
+    - implement a component to display the random movie
 */
-
-import { useState } from "react";
 
 import styles from "./MovieList.module.css";
 
+import { useContext } from "react";
 import HeartButton from "./HeartButtton";
+import FavListContext from "../context/FavListContext";
 
 function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieList }) {
   
-  const [like, setLike] = useState([]);
+  const { like, handleHeartButton } = useContext(FavListContext);
 
   // Determine the appropriate movie list based on the 'genre' prop
   let selectedMovieList = [];
@@ -42,10 +43,6 @@ function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieLis
   // Get the randomly selected movie
   const randomMovie = selectedMovieList[randomIndex];
 
-  const handleHeartButton = (imdbID) => {
-    /* some code to add it to mylist? */
-  };
-
   return (
     <div>
       <h2>Random {genre} Movie</h2>
@@ -55,8 +52,8 @@ function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieLis
           <p className={styles.title}>
             {randomMovie.Title}
             <HeartButton
-              like={like[randomMovie.imdbID]}
-              onClick={() => handleHeartButton(randomMovie.imdbID)}
+                  like={like[randomMovie.imdbID]}
+                  onClick={() => handleHeartButton(randomMovie)}
             ></HeartButton>
           </p>
           <img
