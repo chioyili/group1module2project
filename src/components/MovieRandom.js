@@ -2,19 +2,20 @@
     This component generates a random movie from the list of movies
 
     To do:
-    - implement like button (check with the team about how we store mylist information)
     - implement styling/css
+    - implement a component to display the random movie
 */
-
-import { useState } from "react";
 
 import styles from "./MovieList.module.css";
 
+import { useContext, useEffect, useState } from "react";
 import HeartButton from "./HeartButtton";
+import FavListContext from "../context/FavListContext";
 
 function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieList }) {
   
-  const [like, setLike] = useState([]);
+  
+  const { like, handleHeartButton } = useContext(FavListContext);
 
   // Determine the appropriate movie list based on the 'genre' prop
   let selectedMovieList = [];
@@ -37,14 +38,19 @@ function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieLis
   }
 
   // Generate a random number to select a random movie
-  const randomIndex = Math.floor(Math.random() * selectedMovieList.length);
+  const [randomIndex, setRandomIndex] = useState(null)
+
+  useEffect( () => {
+    if (selectedMovieList !== null)  {
+      setRandomIndex(Math.floor(Math.random() * selectedMovieList.length));
+      console.log("randomIndex: ", randomIndex)
+    }
+  }, [selectedMovieList])
+  // const randomIndex = Math.floor(Math.random() * selectedMovieList.length);
+  // console.log("randomIndex: ", randomIndex)
 
   // Get the randomly selected movie
   const randomMovie = selectedMovieList[randomIndex];
-
-  const handleHeartButton = (imdbID) => {
-    /* some code to add it to mylist? */
-  };
 
   return (
     <div>
@@ -55,8 +61,8 @@ function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieLis
           <p className={styles.title}>
             {randomMovie.Title}
             <HeartButton
-              like={like[randomMovie.imdbID]}
-              onClick={() => handleHeartButton(randomMovie.imdbID)}
+                  like={like[randomMovie.imdbID]}
+                  onClick={() => handleHeartButton(randomMovie)}
             ></HeartButton>
           </p>
           <img
