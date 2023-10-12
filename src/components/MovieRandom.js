@@ -1,38 +1,41 @@
 /* 
     This component generates a random movie from the list of movies
 
-    Future improvments:
-    - implement styling/css
+    Future improvements:
     - implement a component to display the random movie
 */
 
-import styles from "./MovieList.module.css";
+import styles from "./MovieRandom.module.css";
 
 import { useContext, useEffect, useState } from "react";
 import HeartButton from "./HeartButtton";
 import FavListContext from "../context/FavListContext";
 
 function MovieRandom() {
-  
   const { movieData, like, handleHeartButton } = useContext(FavListContext);
+  const [randomIndex, setRandomIndex] = useState(null);
 
-  const randomIndex = Math.floor(Math.random() * movieData.length);
-  // console.log("randomIndex: ", randomIndex)
+  useEffect(() => {
+    if (movieData && movieData.length > 0 && randomIndex === null) {
+      // Generate a random index only once when movieData is available.
+      const newIndex = Math.floor(Math.random() * movieData.length);
+      setRandomIndex(newIndex);
+    }
+  }, [movieData, randomIndex]);
 
-  // Get the randomly selected movie
-  const randomMovie = movieData[randomIndex];
+  const randomMovie = movieData && movieData[randomIndex];
 
   return (
     <div>
       <h2>Shall we watch...</h2>
 
       {randomMovie ? (
-        <div key={randomMovie.imdbID}>
+        <div>
           <p className={styles.title}>
             {randomMovie.Title}
             <HeartButton
-                  like={like[randomMovie.imdbID]}
-                  onClick={() => handleHeartButton(randomMovie)}
+              like={like[randomMovie.imdbID]}
+              onClick={() => handleHeartButton(randomMovie)}
             ></HeartButton>
           </p>
           <img

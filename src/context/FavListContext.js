@@ -13,26 +13,31 @@ export function FavListProvider({ children }) {
   const [comedyMovieList, setComedyMovieList] = useState([]);
   const [fullMovieList, setFullMovieList] = useState([]);
 
-  /* Below code are for setting genre */
-  const [genreSelect, setGenreSelect] = useState(false);
+  /* Booleans for determining whether to show MovieRandom and MovieList */
+  const [randomSelect, setRandomSelect] = useState(false);
+  const [movieListSelect, setMovieListSelect] = useState(false);
 
   const selectMovieHandler = (genre) => {
     switch (genre) {
       case "mystery":
         setMovieData(mysteryMovieList);
-        setGenreSelect(false);
+        setRandomSelect(false);
+        setMovieListSelect(false);
         break;
       case "romance":
         setMovieData(romanceMovieList);
-        setGenreSelect(false);
+        setRandomSelect(false);
+        setMovieListSelect(false);
         break;
       case "comedy":
         setMovieData(comedyMovieList);
-        setGenreSelect(false);
+        setRandomSelect(false);
+        setMovieListSelect(false);
         break;
       case "full":
         setMovieData(fullMovieList);
-        setGenreSelect(false);
+        setRandomSelect(false);
+        setMovieListSelect(false);
         break;
       default:
         console.log("went into default...");
@@ -109,8 +114,10 @@ export function FavListProvider({ children }) {
     handlerAddItem: handlerAddItem,
     like: like,
     handleHeartButton: handleHeartButton,
-    genreSelect: genreSelect, 
-    setGenreSelect: setGenreSelect,
+    randomSelect: randomSelect,
+    movieListSelect: movieListSelect,
+    setRandomSelect: setRandomSelect,
+    setMovieListSelect: setMovieListSelect,
     // apiGet: apiGet,
     isLoading: isLoading,
     setIsLoading: setIsLoading,
