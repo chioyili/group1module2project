@@ -4,6 +4,7 @@ import styles from './MovieSelect.module.css'
 import { useEffect, useContext } from "react";
 import FavListContext from "../context/FavListContext";
 import MovieList from './MovieList';
+import MovieRandom from './MovieRandom';
 
 function MovieSelect() {
   const {
@@ -11,7 +12,11 @@ function MovieSelect() {
     movieData,
     selectMovieHandler,
     genreSelect,
+    randomSelect,
+    movieListSelect,
     setGenreSelect,
+    setRandomSelect,
+    setMovieListSelect
   } = useContext(FavListContext);
 
   return (
@@ -29,10 +34,11 @@ function MovieSelect() {
         <button className={styles.button} onClick={() => selectMovieHandler('comedy')}>Comedy</button>     
         <button className={styles.button} onClick={() => selectMovieHandler('full')}>All Genre</button>      
         <br />                                                                                    
-        <button className={styles.selectbutton}>I want a random movie</button>
-        <button className={styles.selectbutton} onClick={() => setGenreSelect(!genreSelect)}>Give me a list</button>
+        <button className={styles.selectbutton} onClick={ () => {setRandomSelect(!randomSelect); setMovieListSelect(false);} }>I want a random movie</button>
+        <button className={styles.selectbutton} onClick={ () => {setMovieListSelect(!movieListSelect); setRandomSelect(false);} }>Give me a list</button>
         <br />
-        {genreSelect && <MovieList />}
+        {randomSelect && <MovieRandom />}
+        {movieListSelect && <MovieList />}
   </div>
   )
 }

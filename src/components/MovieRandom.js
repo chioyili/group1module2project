@@ -1,7 +1,7 @@
 /* 
     This component generates a random movie from the list of movies
 
-    To do:
+    Future improvments:
     - implement styling/css
     - implement a component to display the random movie
 */
@@ -12,49 +12,19 @@ import { useContext, useEffect, useState } from "react";
 import HeartButton from "./HeartButtton";
 import FavListContext from "../context/FavListContext";
 
-function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieList }) {
+function MovieRandom() {
   
-  
-  const { like, handleHeartButton } = useContext(FavListContext);
+  const { movieData, like, handleHeartButton } = useContext(FavListContext);
 
-  // Determine the appropriate movie list based on the 'genre' prop
-  let selectedMovieList = [];
-  switch (genre) {
-    case 'Mystery':
-      selectedMovieList = mysteryMovieList;
-      console.log(genre, " movie selected");
-      break;
-    case 'Comedy':
-      selectedMovieList = comedyMovieList;
-      console.log(genre, " movie selected");
-      break;
-    case 'Romance':
-      selectedMovieList = romanceMovieList;
-      console.log(genre, " movie selected");
-      break;
-    default:
-      selectedMovieList = [];
-      console.log("no movie selected");
-  }
-
-  // Generate a random number to select a random movie
-  const [randomIndex, setRandomIndex] = useState(null)
-
-  useEffect( () => {
-    if (selectedMovieList !== null)  {
-      setRandomIndex(Math.floor(Math.random() * selectedMovieList.length));
-      console.log("randomIndex: ", randomIndex)
-    }
-  }, [selectedMovieList])
-  // const randomIndex = Math.floor(Math.random() * selectedMovieList.length);
+  const randomIndex = Math.floor(Math.random() * movieData.length);
   // console.log("randomIndex: ", randomIndex)
 
   // Get the randomly selected movie
-  const randomMovie = selectedMovieList[randomIndex];
+  const randomMovie = movieData[randomIndex];
 
   return (
     <div>
-      <h2>Random {genre} Movie</h2>
+      <h2>Shall we watch...</h2>
 
       {randomMovie ? (
         <div key={randomMovie.imdbID}>
@@ -73,7 +43,7 @@ function MovieRandom({ genre, mysteryMovieList, comedyMovieList, romanceMovieLis
           <p className={styles.year}>Released on {randomMovie.Year} </p>
         </div>
       ) : (
-        <p>No {genre} movies available.</p>
+        <p>No movies available.</p>
       )}
     </div>
   );

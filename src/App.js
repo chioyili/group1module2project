@@ -11,6 +11,7 @@ import FavListContext from "./context/FavListContext";
 import { useState, useEffect, useContext } from "react";
 // import { useLoaderData } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MovieRandom from "./components/MovieRandom";
 
 function App() {
   /* Route */
@@ -108,6 +109,7 @@ function App() {
           <Routes>
             <Route element={<Header />}>
               <Route path="/" element={<MovieSelect />}>
+                <Route path="random" element={<MovieRandom />} />
                 <Route path="list" element={<MovieList />} />
               </Route>
               <Route path="mylist" element={<ViewList />} />
