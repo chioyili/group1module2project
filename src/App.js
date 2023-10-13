@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+// import movieAPI from "./api/moveapi";
+import MovieSelect from "./components/MovieSelect";
+import MovieList from "./components/MovieList";
+import Header from "./components/Header";
+import ViewList from "./components/ViewList";
+
+import { FavListProvider } from "./context/FavListContext";
+import FavListContext from "./context/FavListContext";
+
+import { useState, useEffect, useContext } from "react";
+// import { useLoaderData } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import MovieRandom from "./components/MovieRandom";
 
 function App() {
+  /* Route */
+  const DefaultPage = () => <p>Nothing to see here</p>;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <FavListProvider>
+          <Routes>
+            <Route element={<Header />}>
+              <Route path="/" element={<MovieSelect />}>
+                <Route path=":genreN" element={<MovieRandom />} >
+                  <Route path="random" element={<MovieRandom />} />
+                </Route>
+                <Route path=":genreN" element={<MovieList />} >
+                  <Route path="list" element={<MovieList />} />
+                </Route>
+              </Route>
+              <Route path="mylist" element={<ViewList />} />
+              <Route path="*" element={<DefaultPage />} />
+            </Route>
+          </Routes>
+        </FavListProvider>
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
+
+<FavListProvider>
+  <Header />
+  <MovieSelect />
+  <MovieList />
+  <ViewList />
+</FavListProvider>
