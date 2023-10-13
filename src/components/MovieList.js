@@ -1,12 +1,13 @@
 import React from "react";
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
 
 import styles from "./MovieList.module.css";
 import HeartButton from "./HeartButtton";
 import FavListContext from "../context/FavListContext";
 
 function MovieList() {
-  const { movieData, like, handleHeartButton } = useContext(FavListContext);
+  const { movieData, selectMovieHandler, like, handleHeartButton } = useContext(FavListContext);
 
   return (
     <div>

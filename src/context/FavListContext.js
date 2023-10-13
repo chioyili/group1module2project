@@ -1,9 +1,13 @@
 import { createContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import movieAPI from "../api/moveapi";
 
 const FavListContext = createContext();
 
 export function FavListProvider({ children }) {
+  /* Below code are for genreNav */
+  const genreNav = ["Mystery","Romance","Comedy","All"];
+
   /* Below code are for setting the api data */
   const [movieData, setMovieData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +38,7 @@ export function FavListProvider({ children }) {
         setRandomSelect(false);
         setMovieListSelect(false);
         break;
-      case "full":
+      case "all":
         setMovieData(fullMovieList);
         setRandomSelect(false);
         setMovieListSelect(false);
@@ -128,6 +132,7 @@ export function FavListProvider({ children }) {
     setRomanceMovieList: setRomanceMovieList,
     setComedyMovieList: setComedyMovieList,
     selectMovieHandler: selectMovieHandler,
+    genreNav: genreNav,
   };
 
   return (

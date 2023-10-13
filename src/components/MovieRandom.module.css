@@ -1,3 +1,13 @@
+.movielist{
+    display:flex;
+    flex-wrap: wrap;
+    object-fit:cover;
+    margin-left: 0 auto;
+    justify-content:center;
+    align-items: flex-start;
+    margin: 20px;
+}
+
 .title{
     color:Black;
     font-size: medium;
@@ -16,6 +26,7 @@
 }
 
 .poster{
+    width:90%;
     height: 50%;
     object-fit:cover;
     margin-bottom: 10px;

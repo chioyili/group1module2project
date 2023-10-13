@@ -6,3 +6,12 @@
     margin: 10px;
     background-color: lightgray;
   }
+
+.button {
+  padding: 5px 15px;
+  border-radius: 10px;
+  border: 0px solid lightgray;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  margin: 10px;
+  font-weight: normal;
+}
